@@ -1,0 +1,33 @@
+erDiagram
+    USERS {
+        int user_id PK
+        varchar email
+        varchar password_hash
+        varchar account_type 
+        timestamp created_at
+        int is_active
+    }
+    CHATS {
+        int chat_id PK
+        int session_id FK
+        varchar user_id
+        text input_text
+        text output_text
+        boolean feedback
+        timestamp timestamp
+        boolean is_delete
+    }
+    SESSIONS {
+        int session_id PK
+        int user_id FK
+        varchar title
+        timestamp session_time
+        boolean is_title_update
+        boolean is_deleted
+    }
+    
+
+    USERS ||--o{ SESSIONS: "has"
+    SESSIONS ||--o{ CHATS: "contains"
+
+
